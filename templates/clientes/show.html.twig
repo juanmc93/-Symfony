@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %} 
+{% block body %} 
+{% include('navbar.html.twig') %}
+<div class="container">
+    <h1>Clientes</h1>
+    <table class="table table-striped table-bordered">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ cliente.id }}</td>
+            </tr>
+            <tr>
+                <th>CI/RUC</th>
+                <td>{{ cliente.ciRuc }}</td>
+            </tr>
+            <tr>
+                <th>RAZON SOCIAL</th>
+                <td>{{ cliente.razonSocial }}</td>
+            </tr>
+            <tr>
+                <th>TELEFONO</th>
+                <td>{{ cliente.telefono }}</td>
+            </tr>
+            <tr>
+                <th>DIRECCION</th>
+                <td>{{ cliente.direccion }}</td>
+            </tr>
+             <tr>
+                <th>ESTADO</th>
+                <td>{{ cliente.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('clientes_index') }}" class="btn btn-info btn-sm">VOLVER</a>
+
+    <a href="{{ path('clientes_edit', {'id': cliente.id}) }}" class="btn btn-warning btn-sm">EDITAR</a>
+
+    {{ include('clientes/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

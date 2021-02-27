@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include('navbar.html.twig') %}
+<div class="container">
+    <h1>Factura</h1>
+    <table class="table table-striped table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ factura.id }}</td>
+            </tr>
+            <tr>
+                <th>Establecimiento</th>
+                <td>{{ factura.establecimiento }}</td>
+            </tr>
+            <tr>
+                <th>Punto_emision</th>
+                <td>{{ factura.puntoEmision }}</td>
+            </tr>
+            <tr>
+                <th>Sec_factura</th>
+                <td>{{ factura.secFactura }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ factura.fecha ? factura.fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+             <tr>
+                <th>Subtotal</th>
+                <td>{{ factura.subtotal }}</td>
+            </tr>
+            <tr>
+                <th>Impuestos</th>
+                <td>{{ factura.impuestos }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ factura.total }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('factura_detalle_index') }}"class="btn btn-info btn-sm">VOLVER</a>
+{% endblock %}

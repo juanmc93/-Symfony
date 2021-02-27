@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('clientes_delete', {'id': cliente.id}) }}" onsubmit="return confirm('Está seguro de que quieres eliminar este registro?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cliente.id) }}">
+    <br>
+    <button class="btn btn-danger btn-sm">ELIMINAR</button>
+</form>

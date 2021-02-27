@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Configuracion index{% endblock %}
+
+{% block body %}
+{% include('navbar.html.twig') %}
+    <div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2><b>Configuracion</b></h2>
+            </div>
+            <div class="col-sm-6">
+              <a
+                href="{{ path('configuracion_new') }}"
+                class="btn btn-success"><i class="material-icons">&#xE147;</i>
+                <span>NUEVO</span></a>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ESTABLECIMIENTO</th>
+                <th>PUNTO EMISION</th>
+                <th>SEC. FACTURA</th>
+                <th>ACCION</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for configuracion in configuracions %}
+            <tr>
+                <td>{{ configuracion.id }}</td>
+                <td>{{ configuracion.establecimiento }}</td>
+                <td>{{ configuracion.puntoEmision }}</td>
+                <td>{{ configuracion.secFactura }}</td>
+                <td>
+                    <a href="{{ path('configuracion_show', {'id': configuracion.id}) }}"><i class="material-icons" data-toggle="tooltip" title="Ver">visibility</i></a>
+                    <a href="{{ path('configuracion_edit', {'id': configuracion.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a> 
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+<div class="main container">
+    <div class="row well">
+    <div class="col-md-6">
+        {{ form_start(form,{'attr': {'novalidate':'novalidate','role' :'form'}}) }}
+        <div class="form-group">
+            {{ form_label(form.ruc) }}
+            {{ form_widget(form.ruc,{'attr': {'class':'form-control','placeholder' :'RUC'}}) }} 
+            <span class="text-danger">{{form_errors(form.ruc)}}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.razon_social) }}
+            {{ form_widget(form.razon_social,{'attr': {'class':'form-control','placeholder' :'RAZON SOCIAL'}}) }} 
+            <span class="text-danger">{{form_errors(form.razon_social)}}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.direccion) }}
+            {{ form_widget(form.direccion,{'attr': {'class':'form-control','placeholder' :'DIRECCION'}}) }} 
+            <span class="text-danger">{{form_errors(form.direccion)}}</span>
+        </div>
+        <button class="btn btn-success">{{ button_label|default('GUARDAR') }}</button>
+        {{ form_end(form) }}
+    </div>
+    </div>
+</div>

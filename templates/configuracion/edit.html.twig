@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include('navbar.html.twig') %}
+ <div class="container">
+    {% for message in app.flashes('exito') %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-sm">
+        <h1>Editar Configuracion</h1>
+
+        {{ include('configuracion/_form.html.twig', {'class': 'btn btn-info btn-sm','button_label': 'ACTUALIZAR','style':'margin-left: 15px'}) }}
+
+        <a href="{{ path('configuracion_index') }}" class="btn btn-info btn-sm">VOLVER</a>
+
+        {{ include('configuracion/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

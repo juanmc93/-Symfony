@@ -1,0 +1,24 @@
+<div class="main container">
+    <div class="row well">
+    <div class="col-md-6">
+        {{ form_start(form,{'attr': {'novalidate':'novalidate','role' :'form'}}) }}
+        <div class="form-group">
+            {{ form_label(form.establecimiento) }}
+            {{ form_widget(form.establecimiento,{'attr': {'class':'form-control','placeholder' :'ESTABLECIMIENTO'}}) }} 
+            <span class="text-danger">{{form_errors(form.establecimiento)}}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.punto_emision) }}
+            {{ form_widget(form.punto_emision,{'attr': {'class':'form-control','placeholder' :'PUNTO EMISION'}}) }} 
+            <span class="text-danger">{{form_errors(form.punto_emision)}}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.sec_factura) }}
+           {{ form_widget(form.sec_factura,{'attr': {'class':'form-control'}}) }} 
+            <span class="text-danger">{{form_errors(form.sec_factura)}}</span>
+        </div>
+        <button class="btn btn-success btn-sm">{{ button_label|default('GUARDAR') }}</button><br>
+        {{ form_end(form) }}
+    </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include('navbar.html.twig') %}
+<div style="margin: auto;padding:10px">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2><b>Detalles</b></h2>
+            </div>
+            <div class="col-sm-6">
+            </div>
+          </div>
+        </div>
+        <table id="tablaDetalle"class="js-dynamitable table table-striped table-hover" style="font-size:10px; text-align:right;">
+        <thead>
+            <tr class="active">
+                <th>ID</th>
+                <th>FECHA</th>
+                <th>ESTABLECIMIENTO</th>
+                <th>PUNTO EMISION</th>
+                <th>SEC. FACTURA</th>
+                <th>CLIENTE</th>
+                <th>EMPRESA</th>
+                <th>PRODUCTOS</th>
+                <th>SUBTOTAL</th>
+                <th>IVA</th>
+                <th>TOTAL</th>
+                <th>ACCION</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th><input class="js-filter form-control input-sm" type="text" value="" /></th>
+                <th></th>
+                <th></th>
+                <th><input class="js-filter form-control input-sm" type="text" value="" /></th>
+                <th><input class="js-filter form-control input-sm" type="text" value="" /></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for factura_detalle in factura_detalles %}
+                <tr>
+                    <td>{{ factura_detalle.id }}</td>
+                    <td>{{ factura_detalle.fecha ? factura_detalle.fecha|date('Y-m-d') : '' }}</td>
+                    <td>{{ factura_detalle.establecimiento }}</td>
+                    <td>{{ factura_detalle.punto_emision }}</td>
+                    <td>{{ factura_detalle.sec_factura }}</td>
+                    <td>{{ factura_detalle.cliente }}</td>
+                    <td>{{ factura_detalle.empresa }}</td>
+                    <td>{{ factura_detalle.productos }}</td>
+                    <td>{{ factura_detalle.subtotal }}</td>
+                    <td>{{ factura_detalle.iva }}</td>
+                    <td>{{ factura_detalle.total }}</td>
+                    <td>
+                        <button class="btn btn-xs" onclick=""><i class="material-icons" data-toggle="tooltip" title="imprimir">picture_as_pdf</i></button>
+                        <a href="{{ path('factura_detalle_show', {'id': factura_detalle.id_factura}) }}"><i class="material-icons" data-toggle="tooltip" title="imprimir">visibility</i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+    </div>
+</div>
+{% block javascript %}
+<script src="{{ asset('js/imprimir_detalle.js') }}"></script>
+<script src="{{ asset('js/dynamitable.jquery.min.js') }}"></script>
+{% endblock %}  
+{% endblock %}
+

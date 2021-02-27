@@ -1,0 +1,40 @@
+index:
+   path: /
+   controller: App\Controller\HomeController::index
+
+index_factura:
+   path: /factura
+   controller: App\Controller\FacturaController::index
+
+index_clientes:
+   path: /clientes
+   controller: App\Controller\ClientesController::index
+
+index_productos:
+   path: /productos
+   controller: App\Controller\ProductosController::index
+
+index_configuracion:
+   path: /configuracion
+   controller: App\Controller\ConfiguracionController::index
+
+index_empresa:
+   path: /empresa
+   controller: App\Controller\EmpresaController::index
+
+index_detalle:
+   path: /facturadetalle
+   controller: App\Controller\FacturaDetalleController::index
+
+index2:
+  path: /query/{id}
+  controller: App\Controller\FacturaController::obtenerPorId
+
+indexDetalle:
+  path: /detallenew/{productos}
+  controller: App\Controller\FacturaDetalleController::guardarDetalle
+
+indexConsulta:
+  path: /consulta
+  controller: App\Controller\FacturaDetalleController::listando
+

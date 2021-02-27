@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div class="container">
+ {% for message in app.flashes('exito') %}
+    <div class="alert alert-warning">
+        {{ message }}
+    </div>
+{% endfor %}
+    <div class="row">
+    <div class="col-sm">
+    <h1>Editar Cliente</h1>
+        {{ include('clientes/_form.html.twig', {'class': 'btn btn-info btn-sm','button_label': 'ACTUALIZAR'}) }}
+        <a href="{{ path('clientes_index') }}" class="btn btn-info btn-sm">VOLVER</a>
+        {{ include('clientes/_delete_form.html.twig') }}
+    </div>
+</div>
+</div>
+{% endblock %}

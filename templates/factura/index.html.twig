@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include('navbar.html.twig') %}
+    <div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2><b>Factura</b></h2>
+            </div>
+            <div class="col-sm-6">
+              <a
+                href="{{ path('factura_new') }}"
+                class="btn btn-success"><i class="material-icons">&#xE147;</i>
+                <span>NUEVO</span></a>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ESTABLECIMIENTO</th>
+                <th>PUNTO EMISION</th>
+                <th>SEC. FACTURA</th>
+                <th>FECHA</th>
+                <th>SUBTOTAL</th>
+                <th>IMPUESTOS</th>
+                <th>TOTAL</th>
+                <th>ACCION</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+        {% for factura in facturas %}
+            <tr>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.establecimiento }}</td>
+                <td>{{ factura.puntoEmision }}</td>
+                <td>{{ factura.secFactura }}</td>
+                <td>{{ factura.fecha ? factura.fecha|date('Y-m-d') : '' }}</td>
+                <td>{{ factura.subtotal }}</td>
+                <td>{{ factura.impuestos }}</td>
+                <td>{{ factura.total }}</td>
+                <td>
+                    <a href="{{ path('factura_show', {'id': factura.id}) }}"><i class="material-icons" data-toggle="tooltip" title="Ver">visibility</i></a>
+                    {# <a href="{{ path('factura_edit', {'id': factura.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>  #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>    
+</div>
+{% endblock %}

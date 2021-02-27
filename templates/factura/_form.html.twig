@@ -1,0 +1,104 @@
+<div class="main container">
+    <div class="row well">
+			{{ form_start(form,{'attr': {'novalidate':'novalidate','role' :'form'}}) }}
+				<br>
+				<div class="form-group row col-md-12">
+				    <div class="col-md-3">
+					<label for="nombre_cliente" class="control-label">ESTABLECIMIENTO</label>
+					   {{ form_widget(form.establecimiento, {'attr': {'class':'form-control','readonly':'readonly'}})}} 
+						<span class="text-danger">{{form_errors(form.establecimiento)}}</span>
+                    </div>
+					<div class="col-md-3">
+					 	<label for="tel1" class="control-label">PUNTO EMISION</label>
+						{{ form_widget(form.punto_emision ,{'attr': {'class':'form-control','readonly':'readonly'}}) }} 
+						<span class="text-danger">{{form_errors(form.punto_emision)}}</span>
+					</div>
+					<div class="col-md-3">
+						<label for="mail" class="control-label">SEC. FACTURA</label>
+						{{ form_widget(form.sec_factura,{'attr': {'class':'form-control','readonly':'readonly'}}) }} 
+                        <span class="text-danger">{{form_errors(form.sec_factura)}}</span>
+					</div>
+					<div class="col-md-3">
+						<label for="fecha" class="control-label">FECHA</label>
+                        {{ form_widget(form.fecha,{'attr': {'class':'form-control'}}) }} 
+                        <span class="text-danger">{{form_errors(form.fecha)}}</span>
+                    </div>
+				</div>
+				<div class="form-group row col-md-12">
+                    <div class="col-md-3">
+						<label for="empresa" class="control-label">EMPRESA</label>
+                        {{ form_widget(form.empresa,{'attr': {'class':'form-control','placeholder' :'EMPRESA'}}) }} 
+                        <span class="text-danger">{{form_errors(form.empresa)}}</span>
+                    </div>
+                    <div class="col-md-3">
+						<label for="tel2" class="control-label">CLIENTE</label>
+                        {{ form_widget(form.clientes,{'attr': {'class':'form-control','placeholder' :'CLIENTES'}}) }} 
+                        <span class="text-danger">{{form_errors(form.clientes)}}</span>
+                    </div>
+					<div class="col-md-6" style="left: 30px;top: 20px;">
+						<button type="button" class="btn btn-success" onclick="location.href='{{path('productos_new')}}'">
+						<span class="glyphicon glyphicon-th"></span> Nuevo producto
+						</button>
+						<button type="button" class="btn btn-info" onclick="location.href='{{path('clientes_new')}}'">
+						<span class="glyphicon glyphicon-user"></span> Nuevo cliente
+						</button>
+						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+						 <span class="glyphicon glyphicon-plus"></span> Agregar productos
+						</button>
+					</div>	
+				</div>	
+				<div class="container col-md-8 text-center" style="left: 150px;">
+					<table id="mitabla" class="table table-striped table-bordered table-condensed table-sm">
+						<thead class="thead-dark">
+							<tr class="active">
+								<th>ID</th>
+								<th>DESCRIPCION</th>
+								<th>PRECIO</th>
+								<th>CANTIDAD</th>
+								<th>TOTAL</th>
+								<th>ELIMINAR</th>
+							</tr>
+						</thead>
+						<tbody >
+						</tbody>
+					</table>
+				</div>
+				<div class="form-group row col-md-12">
+				<div class="col-md-3">
+						<label class="col-md-2 control-label">SUBTOTAL</label>
+                        {{ form_widget(form.subtotal,{'attr': {'class':'form-control','value' :'0','readonly':'readonly'}}) }} 
+                        <span class="text-danger">{{form_errors(form.subtotal)}}</span>
+                    </div>
+				</div>
+                <div class="form-group row col-md-12">
+					<div class="col-md-3">
+						<label class="col-md-2 control-label">IMPUESTOS</label>
+                        {{ form_widget(form.impuestos,{'attr': {'class':'form-control','value' :'0','readonly':'readonly'}}) }} 
+                        <span class="text-danger">{{form_errors(form.impuestos)}}</span>
+                    </div>
+				</div>
+				<div class="form-group row col-md-12">
+                    <div class="col-md-3">
+					    <label class="col-md-2 control-label">TOTAL</label>
+                        {{ form_widget(form.total,{'attr': {'class':'form-control','value' :'0','readonly':'readonly'}}) }} 
+                        <span class="text-danger">{{form_errors(form.total)}}</span>
+                    </div>
+					<div class="col-md-8" style="top: 20px;left: 635px">
+						<button class="col-md-2 btn btn-success" id="guardaFactura" onclick="setTimeout('updateProducto()',2000);">{{ button_label|default('GUARDAR') }}</button><br><br>
+						{{ form_end(form) }}<br>
+					</div>
+                </div>
+        </div>
+    </div>
+</div>
+{# <button class="col-md-2 btn btn-success" id="probar">probar</button> #}
+<object id="pdf" data="" type="application/pdf" width="100%" height="100%"></object>
+
+<script>
+function load() {
+    $('#factura_establecimiento').val("{{ configuracion.establecimiento }}");
+	$('#factura_punto_emision').val("{{ configuracion.punto_emision }}");
+	$('#factura_sec_factura').val("{{ configuracion.sec_factura }}");
+}
+window.onload = load;
+</script>

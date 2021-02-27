@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %} 
+{% block body %} 
+{% include('navbar.html.twig') %}
+<div class="container col-md">
+  {% for message in app.flashes('exito') %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>
+  {% endfor %}
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2><b>Clientes</b></h2>
+        </div>
+        <div class="col-sm-6">
+          <a href="{{ path('clientes_new') }}" class="btn btn-success"
+            ><i class="material-icons">&#xE147;</i> <span>NUEVO</span></a
+          >
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>CI/RUC</th>
+          <th>RAZON SOCIAL</th>
+          <th>TELEFONO</th>
+          <th>DIRECCION</th>
+          <th>ESTADO</th>
+          <th>ACCION</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cliente in clientes %}
+        <tr data-id="{{ cliente.id }}">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.ciRuc }}</td>
+          <td>{{ cliente.razonSocial }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.estado }}</td>
+          <td class="actions">
+            <a
+              href="{{ path('clientes_show', {'id': cliente.id}) }}"
+              ><i class="material-icons" data-toggle="tooltip" title="ver"
+                >visibility</i
+              ></a
+            >
+            <a
+              href="{{ path('clientes_edit', {'id': cliente.id}) }}"
+              class="edit"
+              ><i class="material-icons" data-toggle="tooltip" title="editar"
+                >&#xE254;</i
+              ></a
+            >
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="6">no records found</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
